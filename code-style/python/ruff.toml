@@ -1,0 +1,66 @@
+# Ruff linter configuration
+# https://docs.astral.sh/ruff/configuration/
+#
+# Copy to your project root or .engineering/ directory
+# Run: ruff check . --config .engineering/ruff.toml
+
+target-version = "py311"
+line-length = 100
+
+[lint]
+select = [
+    "E",    # pycodestyle errors
+    "F",    # pyflakes
+    "W",    # pycodestyle warnings
+    "I",    # isort (import sorting)
+    "N",    # pep8-naming
+    "UP",   # pyupgrade (modern Python syntax)
+    "B",    # flake8-bugbear (common bugs)
+    "SIM",  # flake8-simplify (simplifiable code)
+    "C4",   # flake8-comprehensions (better comprehensions)
+    "PIE",  # flake8-pie (misc lints)
+    "PT",   # flake8-pytest-style (pytest best practices)
+    "RSE",  # flake8-raise (raise statement lints)
+    "RET",  # flake8-return (return statement lints)
+    "TCH",  # flake8-type-checking (TYPE_CHECKING block optimization)
+]
+
+ignore = [
+    "E501",   # line too long — handled by formatter
+    "B008",   # do not perform function calls in argument defaults (FastAPI uses this)
+    "RET504", # unnecessary assignment before return — sometimes aids readability
+]
+
+# Allow autofix for all enabled rules
+fixable = ["ALL"]
+unfixable = []
+
+[lint.per-file-ignores]
+# Tests can use assertions, magic values, and broader imports
+"tests/**/*.py" = [
+    "S101",   # assert allowed in tests
+    "PT004",  # fixture does not return anything (acceptable)
+    "B011",   # do not call assert False
+    "SIM300", # yoda conditions OK in tests
+]
+# Scripts and notebooks can have unused imports and print statements
+"scripts/**/*.py" = ["F401", "T201"]
+"notebooks/**/*.py" = ["F401", "T201", "E402"]
+
+[lint.isort]
+known-first-party = ["src", "app"]
+force-single-line = false
+lines-after-imports = 2
+
+[lint.flake8-pytest-style]
+fixture-parentheses = false
+mark-parentheses = false
+
+[lint.flake8-bugbear]
+extend-immutable-calls = ["fastapi.Depends", "fastapi.Query", "fastapi.Path"]
+
+[format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"

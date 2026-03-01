@@ -7,7 +7,7 @@ description: |
   naming (catalog.schema.table), medallion layer rules, SQL warehouse
   best practices, and Spark DataFrame style guide.
 
-status: backlog
+status: done
 priority: medium
 agent: docs
 review: human-review
@@ -27,7 +27,7 @@ estimate: m
 
 actual_tokens: null
 actual_duration_minutes: null
-completed: null
+completed: "2026-03-01"
 
 created: 2026-03-01
 updated: 2026-03-01

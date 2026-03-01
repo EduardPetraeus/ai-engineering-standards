@@ -1,0 +1,34 @@
+id: TASK-001
+title: "Add pre-commit hook config for Python projects"
+description: |
+  Create a pre-commit-config.yaml template that projects can copy.
+  Should include: ruff linting, ruff formatting, mypy type checking,
+  YAML validation, secret scanning (detect-secrets), and trailing
+  whitespace removal. Reference the existing ruff.toml and pyproject.toml
+  configs in code-style/python/.
+
+status: ready
+priority: medium
+agent: code
+review: agent-review
+assignee: null
+sprint: null
+
+depends_on: []
+blocks: []
+
+definition_of_done:
+  - "pre-commit-config.yaml template exists in code-style/python/"
+  - "All hooks reference pinned versions"
+  - "README or docs reference the new config"
+
+tags: [tooling, python, pre-commit]
+estimate: s
+
+actual_tokens: null
+actual_duration_minutes: null
+completed: null
+
+created: 2026-03-01
+updated: 2026-03-01
+notes: ""

@@ -1,0 +1,34 @@
+id: TASK-002
+title: "Add Databricks/Spark coding standards"
+description: |
+  Add a section for Databricks and PySpark conventions. This is a key
+  part of the stack (HealthReporting uses Databricks extensively).
+  Cover: notebook vs script conventions, DLT expectations, Unity Catalog
+  naming (catalog.schema.table), medallion layer rules, SQL warehouse
+  best practices, and Spark DataFrame style guide.
+
+status: backlog
+priority: medium
+agent: docs
+review: human-review
+assignee: null
+sprint: null
+
+depends_on: []
+blocks: []
+
+definition_of_done:
+  - "code-style/databricks/ directory with conventions doc"
+  - "Covers DLT, Unity Catalog naming, medallion layers"
+  - "Cross-references existing SQL and Python conventions"
+
+tags: [databricks, spark, data-engineering]
+estimate: m
+
+actual_tokens: null
+actual_duration_minutes: null
+completed: null
+
+created: 2026-03-01
+updated: 2026-03-01
+notes: ""

@@ -76,6 +76,48 @@ This repo is part of the **Agentic Engineering OS** — a modular ecosystem for 
 | [ai-project-templates](https://github.com/EduardPetraeus/ai-project-templates) | Cookiecutter scaffolder for new projects | Scaffolding |
 | [agentic-engineering](https://github.com/EduardPetraeus/agentic-engineering) | Umbrella docs, content marketing, ecosystem overview | Scaffolding |
 
+## Validator CLI
+
+Install and run the built-in standards validator:
+
+```bash
+pip install -e .
+ai-standards validate /path/to/your/repo
+```
+
+### Validation Checks (11 total)
+
+| Check | What it validates |
+|---|---|
+| Ruff config | `ruff.toml` or `[tool.ruff]` in `pyproject.toml` exists |
+| pyproject.toml | `pyproject.toml` with `[project]` section exists |
+| Pre-commit config | `.pre-commit-config.yaml` exists |
+| CLAUDE.md | `CLAUDE.md` file exists |
+| CLAUDE.md sections | `CLAUDE.md` contains required sections: Identity, Scope, Boundaries |
+| Tests directory | `tests/` directory exists |
+| CI/CD workflows | `.github/workflows/` directory exists |
+| README.md | `README.md` file exists |
+| LICENSE | `LICENSE` file exists |
+| Naming conventions | AST-based: functions/variables use `snake_case`, classes use `PascalCase` |
+| Docstring presence | All public functions (not starting with `_`) have docstrings |
+
+### Additional Utilities
+
+**Commit message validation** (importable, not yet wired into CLI):
+
+```python
+from ai_standards.checks import check_commit_message
+
+valid, errors = check_commit_message("feat(auth): add login endpoint")
+# valid=True, errors=[]
+
+valid, errors = check_commit_message("added stuff")
+# valid=False, errors=["First line does not match Conventional Commits: ..."]
+```
+
+Valid types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`, `ci`, `perf`, `build`.
+First line must be 72 characters or fewer.
+
 ## How to Adopt
 
 ### Minimal (copy configs)

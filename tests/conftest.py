@@ -23,8 +23,13 @@ def compliant_repo(tmp_path: Path) -> Path:
     # .pre-commit-config.yaml
     (tmp_path / ".pre-commit-config.yaml").write_text("repos: []\n")
 
-    # CLAUDE.md
-    (tmp_path / "CLAUDE.md").write_text("# CLAUDE.md\n")
+    # CLAUDE.md with required sections
+    (tmp_path / "CLAUDE.md").write_text(
+        "# CLAUDE.md\n\n"
+        "## Identity\nTest project.\n\n"
+        "## Scope\nEverything.\n\n"
+        "## Boundaries\nNothing out of scope.\n"
+    )
 
     # tests/ directory
     (tmp_path / "tests").mkdir()

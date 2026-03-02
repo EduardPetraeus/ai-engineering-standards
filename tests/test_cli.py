@@ -12,19 +12,21 @@ class TestValidateCommand:
         runner = CliRunner()
         result = runner.invoke(cli, ["validate", str(compliant_repo)])
         assert result.exit_code == 0
-        assert "8/8" in result.output
+        assert "11/11" in result.output
 
     def test_validate_empty_repo(self, empty_repo: Path):
         runner = CliRunner()
         result = runner.invoke(cli, ["validate", str(empty_repo)])
         assert result.exit_code == 1
-        assert "0/8" in result.output
+        # Naming + Docstrings pass (no .py files), rest fail = 2/11
+        assert "2/11" in result.output
 
     def test_validate_partial_repo(self, partial_repo: Path):
         runner = CliRunner()
         result = runner.invoke(cli, ["validate", str(partial_repo)])
         assert result.exit_code == 1
-        assert "2/8" in result.output
+        # README + LICENSE + Naming + Docstrings pass = 4/11
+        assert "4/11" in result.output
 
     def test_validate_nonexistent_path(self):
         runner = CliRunner()
